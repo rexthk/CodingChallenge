@@ -14,20 +14,20 @@ import java.util.List;
 
 public class Problem57 {
     public static void main(String[] args) {
-        String text = "the quick brown fox jumps over the lazy dog";
-        Arrays.stream(breakup(text)).forEach(System.out::println);
+        String s = "the quick brown fox jumps over the lazy dog";
+        Arrays.stream(breakup(s, 10)).forEach(System.out::println);
     }
 
-    private static String[] breakup(String text) {
-        if (text.isBlank()) return new String[]{};
+    private static String[] breakup(String s, int k) {
+        if (s.isBlank()) return new String[]{};
 
-        String[] split = text.split(" ");
+        String[] split = s.split(" ");
 
         List<String> result = new ArrayList<>();
         var builder = new StringBuilder();
         int i;
         for (i = 0; i < split.length; ) {
-            if (split[i].length() + builder.length() + 1 <= 10) {
+            if (split[i].length() + builder.length() + 1 <= k) {
                 if (builder.length() > 0) builder.append(" ");
                 builder.append(split[i]);
                 i++;
