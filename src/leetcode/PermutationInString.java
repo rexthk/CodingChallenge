@@ -18,19 +18,19 @@ public class PermutationInString {
         int leftIndex = 0;
         int count = 0;
         int[] chars = new int[26]; // only contain low case letters, we can use a 26 size array to save space
-        for (char c : s1.toCharArray()) chars[c - 97]++;
+        for (char c : s1.toCharArray()) chars[c - 'a']++;
 
         // if we encounter irrelevant char ( char outside s1 ), leftIndex will go beyond i,
         // to tackle this, we will still increase its count/freq, and the next iteration will enter the first if branch to balance it
         for (int i = 0; i < s2.length(); ) {
-            if (chars[s2.charAt(i) - 97] > 0) {
-                chars[s2.charAt(i) - 97]--;
+            if (chars[s2.charAt(i) - 'a'] > 0) {
+                chars[s2.charAt(i) - 'a']--;
                 i++;
                 count++;
 
                 if (count == s1.length()) return true;
             } else {
-                chars[s2.charAt(leftIndex) - 97]++;
+                chars[s2.charAt(leftIndex) - 'a']++;
                 leftIndex++;
                 count--;
             }
